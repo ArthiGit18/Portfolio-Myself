@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import CallIcon from '@mui/icons-material/Call';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const Links = () => {
   const wrapperRef = useRef(null);
@@ -35,20 +36,25 @@ const Links = () => {
       <div className='links_wrapper' ref={wrapperRef}>
         <div className='links_header'>
           <div className='rule'></div>
-          <h2>Contact</h2>
+          <h2>Get In Touch</h2>
         </div>
         <div className='contact_desc'>
           <div className='contact_content'>
             <p>I’m interested in freelance opportunities. However, if you have other request or question, don’t hesitate to contact me</p>
-            <button className='contact_btn'>
-              Call <CallIcon className='contact_id1' />
-            </button>
+            <div className='contact_actions'>
+              <button className='contact_btn call_btn' onClick={() => window.location.href = 'tel:+916379424101'}>
+                Call <CallIcon className='contact_id2' />
+              </button>
+              <button className='contact_btn whatsapp_btn' onClick={() => window.location.href = 'https://wa.me/916379424101'}>
+                WhatsApp <WhatsAppIcon className='contact_id2' />
+              </button>
+            </div>
           </div>
           <div className='contact_id'>
-            <a href="#"><GitHubIcon className='contact_id1' /></a>
-            <a href="#"><LinkedInIcon className='contact_id1' /></a>
-            <a href="#"><InstagramIcon className='contact_id1' /></a>
-            <a href="#">
+            <a href="https://github.com/ArthiGit18"><GitHubIcon className='contact_id1' /></a>
+            <a href="https://www.linkedin.com/in/arthianbalagan/"><LinkedInIcon className='contact_id1' /></a>
+            <a href="https://www.instagram.com/its_a_rthi/"><InstagramIcon className='contact_id1' /></a>
+            <a href="https://leetcode.com/arthianbalagan180/">
               <img src="/assets/website/leetcode.png" alt="Leetcode" className='contact_id1' />
             </a>
           </div>

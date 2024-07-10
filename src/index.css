@@ -46,6 +46,11 @@ ul li {
   list-style-type: none;
   column-gap: 20px;
   color: white;
+  cursor: pointer;
+}
+
+ul li:hover{
+  color: plum;
 }
 
 li a {
@@ -56,12 +61,12 @@ li a {
 }
 
 /* Hero */
-
 .myself_img {
-  /* height: 300px; */
   width: auto;
   z-index: 10;
   background: transparent;
+  transform: translateX(-100%);
+  transition: transform 1s ease;
 }
 
 .hero {
@@ -80,8 +85,6 @@ li a {
   border-top: 1px white dashed;
 }
 
-
-
 .grid_background::before {
   content: '';
   position: absolute;
@@ -89,7 +92,6 @@ li a {
   left: -100%;
   width: 100%;
   height: 100%;
-  
   z-index: 1;
 }
 
@@ -100,7 +102,6 @@ li a {
   left: -100%;
   width: 100px;
   height: 100%;
- 
   background: linear-gradient(to top, #fdfbff80 0%, rgba(246, 243, 255, 0.5) 100%);
   clip-path: polygon(0 0, 100% 0, 75% 100%, 0 80%);
   transform: skewX(40deg);
@@ -112,10 +113,44 @@ li a {
   0% { left: -100%; }
   100% { left: 200%; }
 }
+
 .hero_content {
   z-index: 10;
   background: transparent;
   padding: 20px;
+  transform: translateY(-100%);
+  transition: transform 1s ease;
+}
+
+.hero_btn {
+  transform: translateY(100%);
+  transition: transform 1s ease;
+}
+
+.slide-down {
+  transform: translateY(0);
+}
+
+.slide-up {
+  transform: translateY(0);
+}
+
+.slide-left {
+  transform: translateX(0);
+}
+
+.loader {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero_content span {
@@ -149,6 +184,11 @@ li a {
   background-size: 200% 200%;
   transition: transform 0.5s ease;
   cursor: pointer;
+}
+
+.gradient_hero{
+  position: absolute;
+  right: -29px;
 }
 
 .hero_btn:hover {
@@ -917,15 +957,29 @@ li a {
   max-width: 600px;
 }
 
-.contact_btn {
+.contact_actions{
   display: flex;
   align-items: center;
   column-gap: 10px;
+  margin-top: 20px;
+}
+
+.contact_btn {
   color: #1a0b2e;
   font-size: 20px;
   padding: 10px;
   background: white;
   border-radius: 10px;
+}
+
+.call_btn:hover{
+  background: radial-gradient(circle at 12.8% 28%, rgb(206, 155, 243) 0%, rgb(142, 229, 247) 90%);
+  border: none;
+}
+
+.whatsapp_btn:hover{
+  background: radial-gradient(circle at 12.8% 28%, rgb(206, 155, 243) 0%, rgb(142, 229, 247) 90%);
+  border: none;
 }
 
 .contact_btn .contact_id1 {
@@ -941,11 +995,24 @@ li a {
   row-gap: 20px;
 }
 
+.contact_id2{
+  font-size: 50px;
+  /* padding: 10px; */
+  background: transparent;
+  border-radius: 10px;
+  color: #1a0b2e;
+}
+
 .contact_id .contact_id1 {
   font-size: 50px;
   padding: 10px;
   background: white;
   border-radius: 10px;
+  
+}
+
+.contact_id .contact_id1:hover{
+  background: radial-gradient(circle at 12.8% 28%, rgb(206, 155, 243) 0%, rgb(142, 229, 247) 90%);
 }
 
 .contact_id a {
@@ -1059,4 +1126,18 @@ li a {
   100% {
     transform: scale(1) rotate(0deg) translateX(0);
   }
+}
+
+/* footer */
+
+.copyright{
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 30px;
+}
+
+html {
+  scroll-behavior: smooth;
 }

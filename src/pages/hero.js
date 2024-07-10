@@ -1,24 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Navbar from './navbar';
 import clsx from 'clsx';
-import { twMerge } from 'tailwind-merge';
+import Loader from '../hooks/loader';
+import { CircularProgress } from '@mui/material';
 
 const Hero = () => {
+    const [isLoading, setIsLoading] = useState(false);
+    const [isVisible, setIsVisible] = useState(false);
+    const heroRef = useRef(null);
+
+    const handleCVClick = () => {
+        setIsLoading(true);
+        setTimeout(() => {
+            window.open('https://drive.google.com/file/d/1V4uvAMBPm1Ttj6nqb6jDw9qaK02YOWnS/view?usp=sharing', '_blank');
+            setIsLoading(false);
+        }, 2000);
+    };
+
+    useEffect(() => {
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                if (entry.isIntersecting) {
+                    setIsVisible(true);
+                }
+            },
+            { threshold: 0.1 }
+        );
+        if (heroRef.current) {
+            observer.observe(heroRef.current);
+        }
+        return () => {
+            if (heroRef.current) {
+                observer.unobserve(heroRef.current);
+            }
+        };
+    }, []);
+
     return (
-        <div className=''>
-            <Navbar />
+        <div ref={heroRef}>
+            {/* <Navbar /> */}
+            {isLoading && <Loader />}
             <div className='hero'>
                 <div className='container'>
-                    <div className={clsx('hero_wrapper', twMerge('relative overflow-hidden'))}>
-                        <div className='hero_content'>
-                            <span className=''>A.ARTHI</span><br />
-                            <span className=''>FRONTEND WEB DEVELOPER</span><br />
+                    <div className={clsx('hero_wrapper', 'relative', 'overflow-hidden')}>
+                        <div className={clsx('hero_content', isVisible && 'slide-down')}>
+                            <span>A.ARTHI</span><br />
+                            <span>FRONTEND WEB DEVELOPER</span><br />
                             <div className='hero_content-small'>
                                 <small>Passionate Frontend Web Developer with a knack for crafting intuitive and responsive user interfaces using React and Bootstrap. Committed to delivering high-quality, user-friendly web applications.</small>
                             </div>
-                            <button className='hero_btn'>Contact Me !</button>
+                            <button className={clsx('hero_btn', isVisible && 'slide-up')} onClick={handleCVClick}>Get My CV!</button>
                         </div>
-                        <img src="/assets/myself/6.png" alt="Myself" className='myself_img' />
+                        <img src="/assets/myself/6.png" alt="Myself" className={clsx('myself_img', isVisible && 'slide-left')} />
+                        <div className='gradient_hero'>
+                            <img src='/assets/vector/Gradient.png' alt="Gradient" />
+                        </div>
                         <div className="grid_background"></div>
                     </div>
                 </div>
