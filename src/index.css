@@ -233,6 +233,7 @@ li a {
   transform: translateY(0); /* Slide to final position */
 }
 
+
 .rule {
   height: 1px;
   width: 0; /* Start at 0 width */
