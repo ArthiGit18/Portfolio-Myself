@@ -1,47 +1,7 @@
-// import React, { useRef, useEffect } from 'react';
-
-// const IntersectionObserverWrapper = ({ children, className, onVisibleClass }) => {
-//     const wrapperRef = useRef(null);
-
-//     useEffect(() => {
-//         const observer = new IntersectionObserver(
-//             (entries) => {
-//                 entries.forEach((entry) => {
-//                     if (entry.isIntersecting) {
-//                         entry.target.classList.add(onVisibleClass);
-//                     }
-//                 });
-//             },
-//             {
-//                 threshold: 0.1, // Adjust this value as needed
-//             }
-//         );
-
-//         if (wrapperRef.current) {
-//             observer.observe(wrapperRef.current);
-//         }
-
-//         return () => {
-//             if (wrapperRef.current) {
-//                 observer.unobserve(wrapperRef.current);
-//             }
-//         };
-//     }, [onVisibleClass]);
-
-//     return (
-//         <div ref={wrapperRef} className={className}>
-//             {children}
-//         </div>
-//     );
-// };
-
-// export default IntersectionObserverWrapper;
-
-
-import React, { useRef, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 
 const IntersectionObserverWrapper = ({ children, className, onVisibleClass, delay = 0 }) => {
-    const wrapperRef = useRef(null);
+    const elementRef = useRef(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -54,26 +14,27 @@ const IntersectionObserverWrapper = ({ children, className, onVisibleClass, dela
                     }
                 });
             },
-            { threshold: 0.1 }
+            {
+                threshold: 0.1, // Adjust this value as needed
+            }
         );
 
-        if (wrapperRef.current) {
-            observer.observe(wrapperRef.current);
+        if (elementRef.current) {
+            observer.observe(elementRef.current);
         }
 
         return () => {
-            if (wrapperRef.current) {
-                observer.unobserve(wrapperRef.current);
+            if (elementRef.current) {
+                observer.unobserve(elementRef.current);
             }
         };
     }, [delay, onVisibleClass]);
 
     return (
-        <div ref={wrapperRef} className={className}>
+        <div ref={elementRef} className={className}>
             {children}
         </div>
     );
 };
 
 export default IntersectionObserverWrapper;
-

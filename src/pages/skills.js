@@ -47,9 +47,15 @@ const Skills = () => {
                     </div>
 
                     <div className='skills_vector'>
-                        <img src="/assets/vector/Frame 27.png" alt="vector" className='vector_skill1' />
-                        <img src="/assets/vector/Frame 28.png" alt="vector" className='vector_skill2' />
-                        <img src="/assets/vector/logo (1).png" alt="vector" className='vector_skill3' />
+                        <IntersectionObserverWrapper className='vector_skill1' onVisibleClass='slide-up' delay={800}>
+                            <img src="/assets/vector/Frame 27.png" alt="vector" className='vector_skill1' />
+                        </IntersectionObserverWrapper>
+                        <IntersectionObserverWrapper className='vector_skill2' onVisibleClass='slide-up' delay={1000}>
+                            <img src="/assets/vector/Frame 28.png" alt="vector" className='vector_skill2' />
+                        </IntersectionObserverWrapper>
+                        <IntersectionObserverWrapper className='vector_skill3' onVisibleClass='slide-up' delay={1200}>
+                            <img src="/assets/vector/logo (1).png" alt="vector" className='vector_skill3' />
+                        </IntersectionObserverWrapper>
                     </div>
                 </IntersectionObserverWrapper>
             </div>
