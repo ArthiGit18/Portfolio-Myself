@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Navbar from './navbar';
 import clsx from 'clsx';
 import Loader from '../hooks/loader';
-import { CircularProgress } from '@mui/material';
 
 const Hero = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -16,8 +14,8 @@ const Hero = () => {
             setIsLoading(false);
         }, 2000);
     };
-
     useEffect(() => {
+        const currentHeroRef = heroRef.current; // Copy the ref to a variable inside the effect
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
@@ -26,19 +24,20 @@ const Hero = () => {
             },
             { threshold: 0.1 }
         );
-        if (heroRef.current) {
-            observer.observe(heroRef.current);
+
+        if (currentHeroRef) {
+            observer.observe(currentHeroRef);
         }
+
         return () => {
-            if (heroRef.current) {
-                observer.unobserve(heroRef.current);
+            if (currentHeroRef) {
+                observer.unobserve(currentHeroRef);
             }
         };
     }, []);
 
     return (
         <div ref={heroRef}>
-            {/* <Navbar /> */}
             {isLoading && <Loader />}
             <div className='hero'>
                 <div className='container'>

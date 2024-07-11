@@ -6,14 +6,17 @@ const Experience = () => {
     const workDetailsRefs = useRef([]);
 
     useEffect(() => {
+        const currentExpWrapper = expWrapperRef.current;
+        const currentWorkDetailsRefs = [...workDetailsRefs.current]; // Copy array to avoid reference changes
+
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
-                        if (entry.target === expWrapperRef.current) {
+                        if (entry.target === currentExpWrapper) {
                             expHeaderRef.current.classList.add('header-slide-in');
                         } else {
-                            const index = workDetailsRefs.current.indexOf(entry.target);
+                            const index = currentWorkDetailsRefs.indexOf(entry.target);
                             if (index !== -1) {
                                 setTimeout(() => {
                                     entry.target.classList.add('slide-in');
@@ -28,19 +31,19 @@ const Experience = () => {
             }
         );
 
-        if (expWrapperRef.current) {
-            observer.observe(expWrapperRef.current);
+        if (currentExpWrapper) {
+            observer.observe(currentExpWrapper);
         }
 
-        workDetailsRefs.current.forEach((ref) => {
+        currentWorkDetailsRefs.forEach((ref) => {
             if (ref) observer.observe(ref);
         });
 
         return () => {
-            if (expWrapperRef.current) {
-                observer.unobserve(expWrapperRef.current);
+            if (currentExpWrapper) {
+                observer.unobserve(currentExpWrapper);
             }
-            workDetailsRefs.current.forEach((ref) => {
+            currentWorkDetailsRefs.forEach((ref) => {
                 if (ref) observer.unobserve(ref);
             });
         };

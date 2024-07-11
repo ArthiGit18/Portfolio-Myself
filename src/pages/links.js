@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
@@ -9,6 +9,8 @@ const Links = () => {
   const wrapperRef = useRef(null);
 
   useEffect(() => {
+    const currentWrapperRef = wrapperRef.current; // Copy ref to local variable
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -20,13 +22,13 @@ const Links = () => {
       { threshold: 0.1 }
     );
 
-    if (wrapperRef.current) {
-      observer.observe(wrapperRef.current);
+    if (currentWrapperRef) {
+      observer.observe(currentWrapperRef);
     }
 
     return () => {
-      if (wrapperRef.current) {
-        observer.unobserve(wrapperRef.current);
+      if (currentWrapperRef) {
+        observer.unobserve(currentWrapperRef);
       }
     };
   }, []);

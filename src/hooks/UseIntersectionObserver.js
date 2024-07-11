@@ -4,6 +4,7 @@ const IntersectionObserverWrapper = ({ children, className, onVisibleClass, dela
     const elementRef = useRef(null);
 
     useEffect(() => {
+        const currentElement = elementRef.current; // Copy the ref to a local variable
         const observer = new IntersectionObserver(
             (entries) => {
                 entries.forEach((entry) => {
@@ -19,13 +20,13 @@ const IntersectionObserverWrapper = ({ children, className, onVisibleClass, dela
             }
         );
 
-        if (elementRef.current) {
-            observer.observe(elementRef.current);
+        if (currentElement) {
+            observer.observe(currentElement);
         }
 
         return () => {
-            if (elementRef.current) {
-                observer.unobserve(elementRef.current);
+            if (currentElement) {
+                observer.unobserve(currentElement);
             }
         };
     }, [delay, onVisibleClass]);
