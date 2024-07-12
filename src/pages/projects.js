@@ -62,7 +62,7 @@ const Projects = () => {
                     </IntersectionObserverWrapper>
 
                     <IntersectionObserverWrapper className='projects_item2' onVisibleClass='project-slide-in'>
-                        <div className='project_motive'>
+                        <div className='project_motive project_motive'>
                             <p>Utilized React, HTML, CSS, Bootstrap, and Material-UI components to clone multiple websites efficiently. Employed clean code practices to replicate diverse designs while ensuring responsiveness and functionality across different platforms and devices.</p>
                         </div>
                         <div className='project_screenshot'>

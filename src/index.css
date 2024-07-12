@@ -61,6 +61,7 @@ li a {
 }
 
 /* Hero */
+
 .myself_img {
   width: auto;
   z-index: 10;
@@ -459,16 +460,6 @@ li a {
 
 /* Projects */
 
-.rule_project {
-  height: 1px;
-  width: 0; /* Start at 0 width */
-  border: 1px solid white;
-  transition: width 1s ease; /* Smooth transition */
-}
-
-.slide-up .rule_project {
-  width: 200px; /* Expand to 200px */
-}
 .projects_wrapper {
   margin: 150px auto;
   position: relative;
